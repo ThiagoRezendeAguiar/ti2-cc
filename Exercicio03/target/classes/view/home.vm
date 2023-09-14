@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .filmes{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .filme {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            width: 50%;
+            border-radius: 5px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        }
+
+        .filme h3 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .filme p {
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: rgba(255, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(255, 0, 0);
+        }
+
+        .new-filme {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+
+    <h1>Filmes</h1>
+
+  <div class="filmes">
+    #foreach($filme in $filmes)
+    <div class="filme">
+        <h3>$filme.getNome()</h3>
+        <p>Gênero: $filme.getGenero()</p>
+        <p>Avaliação: $filme.getAvaliacao()</p>
+
+        <a href="/filme/$filme.getId()">Editar</a>
+
+        <form action="/filme/$filme.getId()/remover" method="POST">
+            <button type="submit">Remover</button>
+        </form>
+
+    </div>
+    #end
+  </div> 
+
+    <div class="new-filme">
+        <a href="/filmes/new">Cadastrar novo filme</a>
+    </div>
+
+</body>
+
+</html>
